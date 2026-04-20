@@ -12,16 +12,29 @@
 
 h1 {
   font-family: "Coiny", system-ui;
+  color: var(--primary-color);
 }
 
 h2 {
   font-family: "News Cycle", sans-serif;
+  color: var(--primary-color);
 }
 
 h3 {
   font-family: "News Cycle", sans-serif;
+  color: var(--primary-color);
 }
 
 p {
   font-family: "News Cycle", sans-serif;
+  color: var(--primary-color);
+}
+
+:root {
+  --primary-color: #e60000;
+  --primary-bg-color: #ffebd4;
+}
+
+body {
+  background-color: var(--primary-bg-color);
 }
