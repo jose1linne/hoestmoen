@@ -10,6 +10,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 **/
 
+/**img reset**/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+img {
+  display: block;
+  width: 100%;
+}
+
 h1 {
   font-family: "Coiny", system-ui;
   color: var(--primary-color);
