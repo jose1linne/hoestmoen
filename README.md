@@ -30,18 +30,18 @@ Vi opretter også separate **HTML-filer for hver side**, så strukturen på hjem
 
 ---
 
-### Opdeling
+## Opdeling
 
 Vi kommer til at skrive her, hvem der koder hvad:
 
-## Komponenter:
+### Komponenter:
 
 Card.astro - Josefine
 Footer.astro - Laila
 Navigationbar.astro - Denzel
 CTA - Josefine
 
-## pages
+### pages:
 
 Forsiden - Laila
 Artist - Josefine
