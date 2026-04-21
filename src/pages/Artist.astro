@@ -1,12 +1,66 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import "../css/global.css";
+import Card from "../components/Card.astro";
+
+// 1. Hent data fra Supabase
+const url = `${import.meta.env.SUPABASE_URL}/rest/v1/artists?select=*`;
+const apiKey = import.meta.env.SUPABASE_PUBLISHABLE_KEY;
+
+const options = {
+  headers: {
+    apikey: apiKey,
+  },
+};
+
+// 2. Definer din type (tilføjet image_url så TS ikke brokker sig)
+type Artist = {
+  id: number;
+  name: string;
+  image_url: string;
+};
+
+// 3. Hent dataen og gem den i 'data'
+const data: Artist[] = await fetch(url, options).then((res) => res.json());
+
+console.log("Hentet data:", data);
 ---
 
-<div class="grid.1.2">
-  <h2>SNUGGLE</h2>
-  <p>Det meget omtalte og roste samarbejde mellem Andrea Thuesen fra Baby in Vain og Vilhelm Strange fra Liss har sparket døren ind til alt og alle med albummet Goodbyehouse i 2025.</p>
-</div>
-<div><img src="public/ikonerOgLogo/playLine.webp" alt="playLine.webp" /></div>
+<Layout titel="Høsten">
+  <main>
+    <h1>Artister</h1>
 
-<Layout titel='Høsten-Artist"' />
+    <section class="artist-grid">
+      {
+        data &&
+          data.map((item) => (
+            <article>
+              <h2>{item.name}</h2>
+              <p>ID: {item.id}</p>
+
+              {/* Tjekker om billedet findes før det vises */}
+              {item.image_url && <img src={item.image_url} alt={item.name} style="max-width: 200px;" />}
+
+              {/* Eller hvis du hellere vil bruge din Card-komponent: */}
+              {/* <Card artists={item} /> */}
+            </article>
+          ))
+      }
+    </section>
+  </main>
+</Layout>
+
+<style>
+  /* Lille bonus: Gør det overskueligt */
+  .artist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  article {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+</style>
