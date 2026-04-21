@@ -1,0 +1,10 @@
+---
+import Layout from "../layouts/Layout.astro";
+const { artists } = Astro.props;
+---
+
+<article>
+  <h2>{artists.name}</h2>
+  <p>id: {artists.id}</p>
+  <img src={artists.image_url} alt="img" />
+</article>
