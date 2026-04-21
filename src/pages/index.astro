@@ -1,7 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import "../css/global.css";
+import Card from "../components/Card.astro";
 
-const url = `${import.meta.env.SUPERBASE_URL}/rest/v1/artistTabel?select=*`;
+const url = `${import.meta.env.SUPABASE_URL}/rest/v1/artists?select=*`;
 const apiKey = import.meta.env.SUPABASE_PUBLISHABLE_KEY;
 
 const options = {
@@ -10,11 +12,16 @@ const options = {
   },
 };
 
-const data = await fetch(url, options).then((res) => res.json());
+type Artists = {
+  id: number;
+  name: string;
+};
+
+const data: Artists[] = await fetch(url, options).then((res) => res.json());
 
 console.log(data);
 ---
 
 <Layout titel="Høsten">
-  {data.map((student) => <Student student={student} />)}
+  {data.map((artists) => <Card artists={artists} />)}
 </Layout>
